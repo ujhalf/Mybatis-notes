@@ -17,6 +17,17 @@ public class User implements Serializable {
     private String sex;
     private String address;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", birthday=" + birthday +
+                ", sex='" + sex + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
+
     public Integer getId() {
         return id;
     }
