@@ -6,8 +6,8 @@
 2020-12-10 23:51:38,243 181    [           main] DEBUG ansaction.jdbc.JdbcTransaction  - Opening JDBC Connection
 2020-12-10 23:51:38,856 794    [           main] DEBUG source.pooled.PooledDataSource  - Created connection 1297189682.
 2020-12-10 23:51:38,856 794    [           main] DEBUG ansaction.jdbc.JdbcTransaction  - Setting autocommit to false on JDBC Connection [com.mysql.cj.jdbc.ConnectionImpl@4d518b32]
-2020-12-10 23:51:38,857 795    [           main] DEBUG  com.half.dao.IUserDao.findAll  - ==>  Preparing: SELECT * FROM `user`; 
-2020-12-10 23:51:38,893 831    [           main] DEBUG  com.half.dao.IUserDao.findAll  - ==> Parameters: 
+2020-12-10 23:51:38,857 795    [           main] DEBUG  com.half.com.half.custom.dao.IUserDao.findAll  - ==>  Preparing: SELECT * FROM `user`;
+2020-12-10 23:51:38,893 831    [           main] DEBUG  com.half.com.half.custom.dao.IUserDao.findAll  - ==> Parameters:
 2020-12-10 23:53:12,991 0      [           main] DEBUG ache.ibatis.logging.LogFactory  - Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
 2020-12-10 23:53:13,083 92     [           main] DEBUG source.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
 2020-12-10 23:53:13,083 92     [           main] DEBUG source.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
@@ -16,9 +16,9 @@
 2020-12-10 23:53:13,147 156    [           main] DEBUG ansaction.jdbc.JdbcTransaction  - Opening JDBC Connection
 2020-12-10 23:53:13,626 635    [           main] DEBUG source.pooled.PooledDataSource  - Created connection 299413131.
 2020-12-10 23:53:13,626 635    [           main] DEBUG ansaction.jdbc.JdbcTransaction  - Setting autocommit to false on JDBC Connection [com.mysql.cj.jdbc.ConnectionImpl@11d8ae8b]
-2020-12-10 23:53:13,627 636    [           main] DEBUG  com.half.dao.IUserDao.findAll  - ==>  Preparing: SELECT * FROM `user`; 
-2020-12-10 23:53:13,664 673    [           main] DEBUG  com.half.dao.IUserDao.findAll  - ==> Parameters: 
-2020-12-10 23:53:13,699 708    [           main] DEBUG  com.half.dao.IUserDao.findAll  - <==      Total: 6
+2020-12-10 23:53:13,627 636    [           main] DEBUG  com.half.com.half.custom.dao.IUserDao.findAll  - ==>  Preparing: SELECT * FROM `user`;
+2020-12-10 23:53:13,664 673    [           main] DEBUG  com.half.com.half.custom.dao.IUserDao.findAll  - ==> Parameters:
+2020-12-10 23:53:13,699 708    [           main] DEBUG  com.half.com.half.custom.dao.IUserDao.findAll  - <==      Total: 6
 2020-12-10 23:53:13,701 710    [           main] DEBUG ansaction.jdbc.JdbcTransaction  - Resetting autocommit to true on JDBC Connection [com.mysql.cj.jdbc.ConnectionImpl@11d8ae8b]
 2020-12-10 23:53:13,702 711    [           main] DEBUG ansaction.jdbc.JdbcTransaction  - Closing JDBC Connection [com.mysql.cj.jdbc.ConnectionImpl@11d8ae8b]
 2020-12-10 23:53:13,702 711    [           main] DEBUG source.pooled.PooledDataSource  - Returned connection 299413131 to pool.
@@ -30,9 +30,9 @@
 2020-12-10 23:53:34,803 158    [           main] DEBUG ansaction.jdbc.JdbcTransaction  - Opening JDBC Connection
 2020-12-10 23:53:35,261 616    [           main] DEBUG source.pooled.PooledDataSource  - Created connection 299413131.
 2020-12-10 23:53:35,261 616    [           main] DEBUG ansaction.jdbc.JdbcTransaction  - Setting autocommit to false on JDBC Connection [com.mysql.cj.jdbc.ConnectionImpl@11d8ae8b]
-2020-12-10 23:53:35,263 618    [           main] DEBUG  com.half.dao.IUserDao.findAll  - ==>  Preparing: SELECT * FROM `user`; 
-2020-12-10 23:53:35,299 654    [           main] DEBUG  com.half.dao.IUserDao.findAll  - ==> Parameters: 
-2020-12-10 23:53:35,334 689    [           main] DEBUG  com.half.dao.IUserDao.findAll  - <==      Total: 6
+2020-12-10 23:53:35,263 618    [           main] DEBUG  com.half.com.half.custom.dao.IUserDao.findAll  - ==>  Preparing: SELECT * FROM `user`;
+2020-12-10 23:53:35,299 654    [           main] DEBUG  com.half.com.half.custom.dao.IUserDao.findAll  - ==> Parameters:
+2020-12-10 23:53:35,334 689    [           main] DEBUG  com.half.com.half.custom.dao.IUserDao.findAll  - <==      Total: 6
 2020-12-10 23:53:35,344 699    [           main] DEBUG ansaction.jdbc.JdbcTransaction  - Resetting autocommit to true on JDBC Connection [com.mysql.cj.jdbc.ConnectionImpl@11d8ae8b]
 2020-12-10 23:53:35,345 700    [           main] DEBUG ansaction.jdbc.JdbcTransaction  - Closing JDBC Connection [com.mysql.cj.jdbc.ConnectionImpl@11d8ae8b]
 2020-12-10 23:53:35,345 700    [           main] DEBUG source.pooled.PooledDataSource  - Returned connection 299413131 to pool.

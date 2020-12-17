@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--mybatis主配置文件-->
+<configuration>
+    <!--引入外部配置文件 使用rsources标签   -->
+    <!-- <properties resource="jdbcConfig.properties"/>-->
+    <properties
+            url="file:///D:/prj/mybatis/Mybatis-notes/mybatis-notes/mybatis-crud/src/main/resources/jdbcConfig.properties"/>
+    <!--
+    url属性:uniform resource locator 统一资源定位符
+           写法: 协议 主机 端口 URI
+    URI:统一资源标识符  应用中可以定位一个唯一资源
+    -->
+
+    <!--    配置别名-->
+    <typeAliases>
+        <typeAlias type="User" alias="user"/>
+    </typeAliases>
+<!--   package 用于指定要注册别名的包 配置后该包下的实体类都将使用类名作为别名 且不区分大小写 -->
+    <!--    配置环境-->
+    <environments default="mysql">
+        <environment id="mysql">
+            <transactionManager type="JDBC"></transactionManager>
+            <!-- 连接池-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--指定映射配置文件的位置-->
+    <mappers>
+<!--可以使用package配置包的别名 配置后不需要再单独列出mapper的路径        -->
+        <package name="com.half.dao"/>
+        <!--        <mapper class="com.half.com.half.custom.dao.IUserDao"/>-->
+    </mappers>
+</configuration>

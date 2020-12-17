@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="IUserDao">
+
+    <resultMap id="user" type="User">
+        <id property="userId" column="id"></id>
+        <result property="userName" column="username"/>
+    </resultMap>
+    <!--查询所有-->
+    <select id="findAll" resultMap="user">
+        SELECT * FROM `user`;
+    </select>
+    <!-- 保存   -->
+    <insert id="save" parameterType="User">
+        <!--获取添加后得到的id -->
+        <selectKey keyProperty="userId" keyColumn="id" resultType="Integer" order="AFTER">
+            SELECT last_insert_id();
+        </selectKey>
+        INSERT INTO user(username,address,sex,birthday) VALUES(#{userName},#{address},#{sex},#{birthday});
+    </insert>
+
+    <!--修改-->
+    <update id="update">
+        UPDATE `user` SET username=#{username},address=#{address},sex=#{sex},birthday=#{birthday} WHERE id=#{id};
+    </update>
+
+    <!--删除-->
+    <delete id="delete" parameterType="java.lang.Integer">
+        DELETE FROM `user` where id=#{id};
+    </delete>
+
+    <!--findOne -->
+    <select id="findOne" parameterType="java.lang.Integer" resultType="User">
+        SELECT * FROM `user` WHERE id=#{id};
+    </select>
+    <!-- findByName-->
+    <select id="findByName" parameterType="java.lang.String" resultType="uSer">
+        SELECT * FROM `user` WHERE `username` like '%${value}%';
+    </select>
+    <!-- 查询记录总数   -->
+    <select id="findTotal" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM `user`;
+    </select>
+</mapper>

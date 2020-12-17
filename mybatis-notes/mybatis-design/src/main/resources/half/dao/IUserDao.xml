@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.half.dao.IUserDao">
+<mapper namespace="half.com.half.custom.dao.IUserDao">
     <!--查询所有-->
-    <select id="findAll" resultType="com.half.domain.User">
+    <select id="findAll" resultType="half.domain.User">
         SELECT * FROM `user`;
     </select>
 </mapper>

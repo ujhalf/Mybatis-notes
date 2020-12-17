@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="IUserDao">
+
+
+    <resultMap id="user" type="User">
+        <id property="userId" column="id"></id>
+        <result property="userName" column="username"/>
+    </resultMap>
+    <!--查询所有-->
+    <select id="findAll" resultMap="user">
+        SELECT * FROM `user`;
+    </select>
+
+
+    <!--findOne -->
+    <select id="findOne" parameterType="java.lang.Integer" resultType="User">
+        SELECT * FROM `user` WHERE id=#{id};
+    </select>
+    <!-- findByName-->
+    <select id="findByName" parameterType="java.lang.String" resultType="uSer">
+        SELECT * FROM `user` WHERE `username` like '%${value}%';
+    </select>
+    <!-- 查询记录总数   -->
+    <select id="findTotal" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM `user`;
+    </select>
+
+    <select id="findByQueryVo" parameterType="com.half.domain.QueryVo" resultType="user">
+        SELECT * FROM `user`
+        <where>
+            <if test="user.userName!=null">
+                username =#{user.userName}
+            </if>
+
+        </where>
+    </select>
+
+    <select id="findUserInIds" parameterType="QueryVo" resultMap="user">
+        SELECT * FROM `user`
+        <where>
+            <if test="ids!=null and ids.size()>0">
+                <foreach collection="ids" open="id in (" close=")" item="uid" separator=",">
+                    #{uid}
+                </foreach>
+            </if>
+        </where>
+    </select>
+</mapper>

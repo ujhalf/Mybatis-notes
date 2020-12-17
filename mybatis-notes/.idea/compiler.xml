@@ -7,8 +7,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="mybatis-notes" />
+        <module name="mybatis-design" />
+        <module name="mybatis-sql-exercises" />
+        <module name="mybatis-crud" />
+        <module name="mybatis-datasource-and-tx" />
+        <module name="mybatis-dynamic-SQL" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="mybatis-custom-dao-impl" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

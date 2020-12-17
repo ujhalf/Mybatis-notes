@@ -1,7 +1,9 @@
 package com.half.test;
 
+
 import com.half.dao.IUserDao;
 import com.half.domain.User;
+
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
