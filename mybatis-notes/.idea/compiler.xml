@@ -9,8 +9,11 @@
         <outputRelativeToContentRoot value="true" />
         <module name="mybatis-design" />
         <module name="mybatis-sql-exercises" />
-        <module name="mybatis-crud" />
+        <module name="mybatis-jndi" />
         <module name="mybatis-datasource-and-tx" />
+        <module name="mybatis-annotation" />
+        <module name="mybatis-lazy-query" />
+        <module name="mybatis-crud" />
         <module name="mybatis-dynamic-SQL" />
       </profile>
     </annotationProcessing>

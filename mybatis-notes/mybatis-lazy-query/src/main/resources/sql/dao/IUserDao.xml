@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sql.dao.IUserDao">
+<!-- 开启user支持二级缓存-->
+    <cache/>
+    <resultMap id="userAccountMap" type="user">
+        <id property="id" column="id"></id>
+        <result property="username" column="username"/>
+        <result property="address" column="address"/>
+        <result property="sex" column="sex"/>
+        <result property="birthday" column="birthday"/>
+        <!-- 配置user对象中accounts对象-->
+        <collection property="accounts" ofType="account" select="sql.dao.IAccountDao.findById" column="id">
+
+        </collection>
+    </resultMap>
+
+    <resultMap id="userRoleMap" type="user">
+        <id property="id" column="id"></id>
+        <result property="username" column="username"/>
+        <result property="address" column="address"/>
+        <result property="sex" column="sex"/>
+        <result property="birthday" column="birthday"/>
+        <!-- 配置user对象中roles对象-->
+        <collection property="roles" ofType="role">
+            <id column="rid" property="roleId"/>
+            <result column="role_desc" property="roleDesc"/>
+            <result column="role_desc" property="roleName"/>
+        </collection>
+    </resultMap>
+    <!--查询所有-->
+    <select id="findAll" resultMap="userAccountMap">
+    SELECT  *
+    FROM USER
+    </select>
+
+    <select id="findAllRoles" resultMap="userRoleMap">
+   SELECT u.* ,r.id AS rid ,r.role_name , r.role_desc FROM USER u
+   LEFT OUTER JOIN user_role ur ON u.id=ur.uid
+   LEFT OUTER JOIN role r ON ur.rid =r.id
+    </select>
+
+
+    <!--findOne -->
+    <select id="findOne" parameterType="java.lang.Integer" resultType="user" useCache="true">
+        SELECT * FROM `user` WHERE id=#{id};
+    </select>
+
+
+    <update id="update" parameterType="user">
+        update user set username=#{username},address=#{address} where id=#{id};
+    </update>
+</mapper>
