@@ -19,7 +19,7 @@
     </environments>
     <!--指定映射配置文件的位置-->
     <mappers>
-        <mapper resource="com/half/com.half.custom.dao/IUserDao.xml"/>
+        <mapper resource="com/half/dao/IUserDao.xml"/>
 <!--        <mapper class="com.half.com.half.custom.dao.IUserDao"/>-->
     </mappers>
 </configuration>

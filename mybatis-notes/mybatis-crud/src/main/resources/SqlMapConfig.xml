@@ -1,29 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--添加mybatis文档类型定义-->
+<!--文档类型定义（DTD）可定义合法的XML文档构建模块。它使用一系列合法的元素来定义文档的结构。-->
 <!DOCTYPE configuration
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <!--mybatis主配置文件-->
+<!--所有的配置都在<configuration/>标签中进行配置-->
 <configuration>
-    <!--引入外部配置文件 使用rsources标签   -->
-    <!-- <properties resource="jdbcConfig.properties"/>-->
-    <properties
-            url="file:///D:/prj/mybatis/Mybatis-notes/mybatis-notes/mybatis-crud/src/main/resources/jdbcConfig.properties"/>
-    <!--
-    url属性:uniform resource locator 统一资源定位符
-           写法: 协议 主机 端口 URI
-    URI:统一资源标识符  应用中可以定位一个唯一资源
-    -->
+    <!--1.properties标签: 引入外部配置文件 使用resources标签   -->
+    <properties resource="jdbcConfig.properties"/>
+    <!--除此之外还可以使用file 引入外部配置文件-->
+    <!--    <properties url="file:///D://prj//mybatis//Mybatis-notes//mybatis-notes//mybatis-crud//src//main//resources//jdbcConfig.properties"/>-->
 
-    <!--    配置别名-->
+    <!--2.全局配置参数-->
+    <settings>
+        <!--开启延迟加载-->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
+    </settings>
+
+    <!--3.配置别名 降低冗余的全类名书写 仅仅用于xml配置-->
     <typeAliases>
-        <typeAlias type="User" alias="user"/>
+        <!-- 之后任何需要引用该类的地方都可以通过使用 user来引用 -->
+        <typeAlias type="com.half.domain.User" alias="user"/>
+        <!--package属性:mybatis会在该包下扫描需要的JavaBean 默认会将首字母小写作为别名 如domain.blog.Author的别名为author-->
+        <package name="com.half.domain"/>
     </typeAliases>
-<!--   package 用于指定要注册别名的包 配置后该包下的实体类都将使用类名作为别名 且不区分大小写 -->
-    <!--    配置环境-->
+
+    <!--4.typeHandlers-->
+    <!--在从preparedStatement中取出参数或者是从结果集取值时会使用类型处理器进行类型转换 -->
+
+
+    <!--5.配置环境-->
+    <!--mybatis支持配置成多种环境，便于在如开发、测试等使用不同的配置 -->
+    <!--尽管支持多个环境配置 但每个SqlSessionFactory实例也只能选择一种，每个数据库对应一个SqlSessionFactory实例-->
+    <!--默认使用的环境ID -->
     <environments default="mysql">
+        <!--可配置多个环境 并指明不同的id 用于引用 此处只配置了一个 -->
         <environment id="mysql">
+            <!--事务管理器的配置 -->
+            <!--在 MyBatis 中有两种类型的事务管理器（也就是 type="[JDBC|MANAGED]"） -->
+            <!--JDBC – 这个配置直接使用了 JDBC 的提交和回滚设施，它依赖从数据源获得的连接来管理事务作用域。-->
+            <!--如果使用Spring则无需进行配置，Spring模块会使用自带管理器覆盖之前的配置-->
             <transactionManager type="JDBC"></transactionManager>
-            <!-- 连接池-->
+            <!-- 数据源 使用标准的JDBC数据源接口进行配置 三种内建的数据源类型（也就是 type="[UNPOOLED|POOLED|JNDI]"）-->
+            <!--UNPOOLED:每次请求时都打开关闭连接,适用于对于数据库可用性不高的简单应用 可配置属性:driver、url、username、password、defaultTransactionIsolationLevel 、defaultNetworkTimeout -->
+            <!--POOLED:使用池管理连JDBC接对象，避免创建连接实例所需要的初始化和认证时间，能使得并发web应用快速响应请求 -->
+            <!--JNDI:从jndi上下文中获取数据源的引用-->
             <dataSource type="POOLED">
                 <property name="driver" value="${driver}"/>
                 <property name="url" value="${url}"/>
@@ -34,7 +57,7 @@
     </environments>
     <!--指定映射配置文件的位置-->
     <mappers>
-<!--可以使用package配置包的别名 配置后不需要再单独列出mapper的路径        -->
+        <!--可以使用package配置包的别名 配置后不需要再单独列出mapper的路径        -->
         <package name="com.half.dao"/>
         <!--        <mapper class="com.half.com.half.custom.dao.IUserDao"/>-->
     </mappers>

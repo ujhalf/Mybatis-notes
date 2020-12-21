@@ -2,7 +2,7 @@ package half.dao;
 
 
 import half.domain.User;
-import half.mybatis.annotations.Select;
+
 
 import java.util.List;
 

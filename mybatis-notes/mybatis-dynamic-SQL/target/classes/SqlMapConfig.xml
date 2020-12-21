@@ -8,7 +8,7 @@
     <properties resource="jdbcConfig.properties"/>
     <!--    配置别名-->
     <typeAliases>
-        <typeAlias type="com.half.domain.User" alias="user"/>
+        <typeAlias type="User" alias="user"/>
         <package name="com.half.domain"/>
     </typeAliases>
     <!--   package 用于指定要注册别名的包 配置后该包下的实体类都将使用类名作为别名 且不区分大小写 -->

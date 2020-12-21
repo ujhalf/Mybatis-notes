@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.half.dao.IUserDao">
+<mapper namespace="IUserDao">
 
-    <resultMap id="user" type="com.half.domain.User">
+    <resultMap id="user" type="User">
         <id property="userId" column="id"></id>
         <result property="userName" column="username"/>
     </resultMap>
@@ -13,7 +13,7 @@
         SELECT * FROM `user`;
     </select>
     <!-- 保存   -->
-    <insert id="save" parameterType="com.half.domain.User">
+    <insert id="save" parameterType="User">
         <!--获取添加后得到的id -->
         <selectKey keyProperty="userId" keyColumn="id" resultType="Integer" order="AFTER">
             SELECT last_insert_id();
@@ -32,7 +32,7 @@
     </delete>
 
     <!--findOne -->
-    <select id="findOne" parameterType="java.lang.Integer" resultType="com.half.domain.User">
+    <select id="findOne" parameterType="java.lang.Integer" resultType="User">
         SELECT * FROM `user` WHERE id=#{id};
     </select>
     <!-- findByName-->

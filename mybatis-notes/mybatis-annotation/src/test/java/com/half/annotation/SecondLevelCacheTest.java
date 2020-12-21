@@ -12,6 +12,8 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 /**
  * @Author Hui-min Lu
@@ -51,4 +53,19 @@ public class SecondLevelCacheTest {
         System.out.println(user2);
     }
 
+    @Test
+    public void reflect() throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+        Class userClass =Class.forName("com.half.annotation.domain.User");
+        Method[] methods = userClass.getMethods();
+        for (Method method : methods) {
+            String methodName = method.getName();
+            System.out.println(methodName);
+        }
+        Field[] declaredFields = userClass.getDeclaredFields();
+        for (Field field : declaredFields) {
+            System.out.println(field.getName());
+        }
+
+
+    }
 }

@@ -51,7 +51,7 @@ public class MyBatisTest {
     @Test
     public void testFindAll() throws IOException {
         List<Account> accounts = accountDao.findAll();
-      //  System.out.println(accounts);
+        System.out.println(accounts);
 //        for (Account account : accounts) {
 //            System.out.println(account);
 //            //System.out.println(account.getUser());

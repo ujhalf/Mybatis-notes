@@ -2,18 +2,28 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="IUserDao">
+<!-- -->
+<mapper namespace="com.half.dao.IUserDao">
 
+    <!--<1.resultMap:结果映射是mybatis的强大特性之一，使用这个标签能够用于在数据库列名和domain对象属性名不一致时 进行匹配>-->
+    <!--<resultMap与resultType二者只能使用其一> -->
     <resultMap id="user" type="User">
+        <!--JavaBean属性为userId,数据库列名为id 进行二者的匹配 -->
+        <!--id这个标签用于主键 不一致时的匹配 -->
         <id property="userId" column="id"></id>
         <result property="userName" column="username"/>
     </resultMap>
+
     <!--查询所有-->
+    <!-- id:命名空间中的唯一标识 -->
     <select id="findAll" resultMap="user">
-        SELECT * FROM `user`;
+        SELECT *
+        FROM `user`;
     </select>
     <!-- 保存   -->
-    <insert id="save" parameterType="User">
+    <!--2.parameterType:参数的全限定类名或者别名 这个属性是可选的 mybatis可以通过TypeHandler推断参数的类型 -->
+    <!--可通过useGeneratedKey属性来指明主键自增长 -->
+    <insert id="save" parameterType="User" >
         <!--获取添加后得到的id -->
         <selectKey keyProperty="userId" keyColumn="id" resultType="Integer" order="AFTER">
             SELECT last_insert_id();
@@ -23,24 +33,38 @@
 
     <!--修改-->
     <update id="update">
-        UPDATE `user` SET username=#{username},address=#{address},sex=#{sex},birthday=#{birthday} WHERE id=#{id};
+        UPDATE `user`
+        SET username=#{username},
+            address=#{address},
+            sex=#{sex},
+            birthday=#{birthday}
+        WHERE id = #{id};
     </update>
 
     <!--删除-->
     <delete id="delete" parameterType="java.lang.Integer">
-        DELETE FROM `user` where id=#{id};
+        DELETE
+        FROM `user`
+        where id = #{id};
     </delete>
 
     <!--findOne -->
+    <!--resultType用于指定期望返回结果的全限定类名或者是别名 如果参数是集合类型 指定为集合中的元素类型即可-->
     <select id="findOne" parameterType="java.lang.Integer" resultType="User">
-        SELECT * FROM `user` WHERE id=#{id};
+        SELECT *
+        FROM `user`
+        WHERE id = #{id};
     </select>
     <!-- findByName-->
+
     <select id="findByName" parameterType="java.lang.String" resultType="uSer">
-        SELECT * FROM `user` WHERE `username` like '%${value}%';
+        SELECT *
+        FROM `user`
+        WHERE `username` like '%${value}%';
     </select>
     <!-- 查询记录总数   -->
     <select id="findTotal" resultType="java.lang.Integer">
-        SELECT COUNT(*) FROM `user`;
+        SELECT COUNT(*)
+        FROM `user`;
     </select>
 </mapper>
