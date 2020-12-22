@@ -19,8 +19,10 @@ public interface IUserDao {
      * 查询所有
      */
     @Select("select * from user")
+    //为配置的userMap起一个id 此后就可以引用这个
     @Results(id = "userMap", value = {@Result(id = true, column = "id", property = "userId"),
             @Result(column = "username", property = "userName"),
+            //一对多使用@Many注解
             @Result(property = "accounts", column = "id",
                     many = @Many(select = "com.half.annotation.dao.IAccountDao.findByUid" ,
                             fetchType = FetchType.LAZY))

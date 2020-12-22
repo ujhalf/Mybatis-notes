@@ -24,6 +24,7 @@ public interface IAccountDao {
             @Result(id = true, column = "id", property = "id"),
             @Result(column = "uid", property = "uid"),
             @Result(column = "money", property = "money"),
+            //一对一 使用`@One`注解
             @Result(column = "uid", property = "user", one = @One(select = "com.half.annotation.dao.IUserDao.findOne", fetchType = FetchType.EAGER)
             )
     })
